@@ -16,10 +16,10 @@ export default function Header() {
   }, []);
 
   const navItems = [
-    { path: "/", label: "Home", icon: "🏠" },
-    { path: "/services", label: "Services", icon: "🏥" },
-    { path: "/doctors", label: "Doctors", icon: "👨‍⚕️" },
-    { path: "/contact", label: "Contact", icon: "📞" }
+    { path: "/", label: "Home",},
+    { path: "/services", label: "Services",  },
+    { path: "/doctors", label: "Doctors",  },
+    { path: "/contact", label: "Contact" }
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -94,7 +94,6 @@ export default function Header() {
                         : "text-sky-100 hover:text-white hover:bg-white/10"
                     }`}
                   >
-                    <span className="text-lg">{item.icon}</span>
                     <span className="font-semibold">{item.label}</span>
                     {isActive(item.path) && (
                       <motion.div
@@ -116,7 +115,7 @@ export default function Header() {
                   href="tel:+919876543210"
                   className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-600 to-rose-500 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-shadow"
                 >
-                  <span className="text-lg">🚑</span>
+                  
                   <span>Emergency</span>
                 </a>
               </motion.div>

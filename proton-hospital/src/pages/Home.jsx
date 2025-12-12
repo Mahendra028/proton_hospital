@@ -511,6 +511,11 @@ export default function HomePage() {
                 author: "S. Kapoor",
                 relation: "Patient",
                 image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"
+              },{
+                quote: "Clinical team demonstrated calm leadership during a complex emergency — outcomes were excellent. Their transparent communication kept us informed at every step.",
+                author: "S. Kapoor",
+                relation: "Patient",
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"
               }
             ].map((story, index) => (
               <motion.div
