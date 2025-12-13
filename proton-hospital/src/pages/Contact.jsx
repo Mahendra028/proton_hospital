@@ -1,632 +1,486 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function ContactPage() {
   const [openModal, setOpenModal] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("contact");
   const [messages, setMessages] = useState([
-    { from: "bot", text: "Welcome to Proton Critical Care — how can we help you today?" }
+    { 
+      id: 1, 
+      from: "bot", 
+      text: "Welcome to Proton Critical Care — how can we help you today?",
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    }
   ]);
   const [input, setInput] = useState("");
-  const [activeTab, setActiveTab] = useState("contact");
-  const chatEndRef = useRef(null);
 
+  const chatEndRef = useRef(null);
+  const messagesEndRef = useRef(null);
+
+  // Auto-scroll to bottom of chat
   useEffect(() => {
-    if (chatEndRef.current) {
-      chatEndRef.current.scrollIntoView({ behavior: "smooth" });
+    if (chatOpen) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }
-  }, [messages]);
+  }, [messages, chatOpen]);
 
   function sendMessage(e) {
     e.preventDefault();
     if (!input.trim()) return;
-    setMessages((m) => [...m, { from: "user", text: input }]);
+
+    const userMessage = {
+      id: messages.length + 1,
+      from: "user",
+      text: input,
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    };
+
+    setMessages(prev => [...prev, userMessage]);
     setInput("");
-    
-    // Simulated bot reply
+
+    // Simulate bot response
     setTimeout(() => {
       const responses = [
         "Thanks for your message. Our team will contact you shortly.",
         "We've noted your concern. An emergency coordinator will reach out soon.",
-        "For immediate emergency assistance, please call our emergency line: +91 112 233 4455",
+        "For immediate emergency assistance, please call +91 112 233 4455.",
         "Your message has been received. Our critical care team is reviewing it."
       ];
-      setMessages((m) => [...m, { 
-        from: "bot", 
-        text: responses[Math.floor(Math.random() * responses.length)] 
-      }]);
+
+      const botMessage = {
+        id: messages.length + 2,
+        from: "bot",
+        text: responses[Math.floor(Math.random() * responses.length)],
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+
+      setMessages(prev => [...prev, botMessage]);
     }, 800);
   }
 
   const faqs = [
     {
+      id: 1,
       question: "How do I transfer a critical patient to your facility?",
-      answer: "Call our transfer line at +91 90000 33333 or email transfer@protonhospital.com with patient details, diagnosis, and estimated arrival time. Our team coordinates bed availability and specialist readiness."
+      answer: "Call +91 90000 33333 or email transfer@protonhospital.com with patient details."
     },
     {
+      id: 2,
       question: "What are the visiting hours for ICU patients?",
-      answer: "ICU visiting hours are 10:00 AM – 6:00 PM with a maximum of 2 visitors per patient. Emergency exceptions are considered case-by-case with attending physician approval."
+      answer: "10:00 AM – 6:00 PM (maximum two visitors)."
     },
     {
+      id: 3,
       question: "Do you accept walk-in emergency cases?",
-      answer: "Yes, we accept walk-in emergencies 24/7. For non-emergency consultations, we recommend booking appointments to minimize waiting time and ensure specialist availability."
+      answer: "Yes, walk-in emergencies are accepted 24/7."
     },
     {
+      id: 4,
       question: "Is parking available for visitors?",
-      answer: "Yes, we provide dedicated visitor parking with priority access for emergency vehicles. Valet parking is available for patients with mobility challenges."
+      answer: "Yes, dedicated parking is available with emergency priority."
     }
   ];
 
+  // Updated location details for Kanwar Nagar, Amravati
+  const locationDetails = {
+    address: "Kanwar Nagar, Amravati, Maharashtra 444607",
+    emergencyEntrance: "Main Gate, 24/7 access with dedicated ambulance bay",
+    parking: "Dedicated parking area available, emergency priority slots near entrance",
+    coordinates: {
+      lat: 20.9331,
+      lng: 77.7528
+    },
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3726.658701824531!2d77.7528!3d20.9331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd6a3e6c6a7a7a7%3A0x9c8b9b9b9b9b9b9b!2sKanwar%20Nagar%2C%20Amravati%2C%20Maharashtra%20444607!5e0!3m2!1sen!2sin!4v1647892345678"
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-sky-50/30 to-white">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 px-6">
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="absolute inset-0 bg-gradient-to-br from-sky-500/10 via-cyan-500/5 to-transparent"
-        />
-        
-        <div className="container mx-auto relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
+
+      {/* HERO */}
+      <section className="py-16 px-4 sm:py-20 sm:px-6 text-center">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-sky-600 to-teal-600 bg-clip-text text-transparent">
+          Contact & Support
+        </h1>
+        <p className="mt-4 sm:mt-6 text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
+          Immediate assistance for critical care coordination and emergencies.
+        </p>
+      </section>
+
+      {/* TABS */}
+      <section className="flex justify-center gap-4 pb-10 px-4">
+        {[
+          { id: "contact", label: "Primary Contact" },
+          { id: "location", label: "Location & Map" }
+        ].map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-semibold transition-all duration-200 ${
+              activeTab === tab.id
+                ? "bg-sky-500 text-white shadow-lg shadow-sky-200"
+                : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+            }`}
+            aria-pressed={activeTab === tab.id}
           >
-            <motion.span 
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              className="inline-block px-6 py-3 bg-white/80 backdrop-blur-sm rounded-full border border-sky-200 shadow-sm mb-6"
-            >
-              <span className="text-sky-600 font-semibold">24/7 Emergency & Critical Care Support</span>
-            </motion.span>
-            
-            <motion.h1 
+            {tab.label}
+          </button>
+        ))}
+      </section>
+
+      {/* MAIN CONTENT */}
+      <section className="px-4 sm:px-6 pb-16 sm:pb-20 max-w-7xl mx-auto">
+        <AnimatePresence mode="wait">
+          
+          {/* CONTACT TAB */}
+          {activeTab === "contact" && (
+            <motion.div
+              key="contact"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
+              exit={{ opacity: 0, y: -20 }}
+              className="grid lg:grid-cols-3 gap-6 md:gap-8"
             >
               
-            
-              <span className="bg-gradient-to-r from-sky-600 via-cyan-500 to-teal-600 bg-clip-text text-transparent">
-               Contact & Support
-              </span>
-            </motion.h1>
-            
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="text-xl text-gray-600 leading-relaxed mb-10 max-w-3xl mx-auto"
-            >
-              Immediate assistance for critical care coordination, emergency response, and medical consultations.
-              Our team is available 24/7 through multiple channels.
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Tabs Navigation - Removed departments tab */}
-      <section className="px-6 pb-8">
-        <div className="container mx-auto">
-          <div className="flex flex-wrap gap-2 justify-center">
-            {["contact", "location"].map((tab, index) => (
-              <motion.button
-                key={tab}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setActiveTab(tab)}
-                className={`px-8 py-4 rounded-xl font-semibold transition-all ${
-                  activeTab === tab
-                    ? "bg-gradient-to-r from-sky-500 to-cyan-500 text-white shadow-lg"
-                    : "bg-white text-gray-700 border border-sky-200 hover:border-sky-300"
-                }`}
-              >
-                {tab === "contact" ? "Primary Contact" : "Location & Map"}
-              </motion.button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Main Content */}
-      <section className="px-6 pb-20">
-        <div className="container mx-auto">
-          <AnimatePresence mode="wait">
-            {activeTab === "contact" && (
-              <motion.div
-                key="contact"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="grid lg:grid-cols-3 gap-8"
-              >
-                {/* Primary Contact Card */}
-                <div className="bg-gradient-to-br from-white to-sky-50 rounded-3xl p-8 shadow-xl border border-gray-100 h-full">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="p-3 bg-gradient-to-r from-sky-500 to-cyan-500 rounded-xl">
-                      <span className="text-2xl text-white">📞</span>
-                    </div>
-                    <div>
-                      <h2 className="text-2xl font-bold text-gray-900">Primary Contact</h2>
-                      <p className="text-gray-600">Proton Critical Care Centre, Kanwar Nagar, Amravati</p>
-                    </div>
+              {/* CONTACT CARD */}
+              <div className="p-6 md:p-8 bg-white rounded-2xl md:rounded-3xl shadow-xl">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
+                    <span className="text-2xl">🚨</span>
                   </div>
-
-                  <div className="space-y-6">
-                    {/* Emergency Line */}
-                    <motion.div
-                      whileHover={{ x: 5 }}
-                      className="p-5 bg-gradient-to-r from-red-50 to-rose-50 rounded-2xl border border-red-200"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-                            <p className="text-sm font-medium text-red-700">Emergency Line</p>
-                          </div>
-                          <p className="text-xl font-bold text-gray-900 mt-1">+91 112 233 4455</p>
-                          <p className="text-sm text-gray-600">24/7 Critical Care Response</p>
-                        </div>
-                        <motion.a
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          href="tel:+911122334455"
-                          className="px-6 py-3 bg-gradient-to-r from-red-600 to-rose-500 text-white font-semibold rounded-xl shadow-lg"
-                        >
-                          Call Now
-                        </motion.a>
-                      </div>
-                    </motion.div>
-
-                    {/* Other Contacts */}
-                    {[
-                      { label: "Ambulance Dispatch", number: "+91 99876 54321", icon: "🚑", bgColor: "bg-orange-100", borderColor: "border-orange-200" },
-                      { label: "Hospital Desk", number: "+91 98765 43210", icon: "🏥", bgColor: "bg-blue-100", borderColor: "border-blue-200" },
-                      { label: "Email Support", number: "support@protonhospital.com", icon: "✉️", bgColor: "bg-cyan-100", borderColor: "border-cyan-200" }
-                    ].map((contact, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        whileHover={{ x: 5 }}
-                        className="flex items-center justify-between p-4 bg-white rounded-2xl border border-gray-100 shadow-sm"
-                      >
-                        <div className="flex items-center gap-4">
-                          <div className={`p-3 rounded-xl ${contact.bgColor} ${contact.borderColor}`}>
-                            <span className="text-xl">{contact.icon}</span>
-                          </div>
-                          <div>
-                            <p className="text-sm text-gray-500">{contact.label}</p>
-                            <p className="font-medium text-gray-900">{contact.number}</p>
-                          </div>
-                        </div>
-                        <motion.a
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          href={contact.label.includes("Email") ? `mailto:${contact.number}` : `tel:${contact.number}`}
-                          className="px-4 py-2 rounded-lg border border-gray-200 text-gray-700 font-medium hover:bg-gray-50"
-                        >
-                          {contact.label.includes("Email") ? "Email" : "Call"}
-                        </motion.a>
-                      </motion.div>
-                    ))}
-
-                    {/* Action Buttons */}
-                    <div className="grid grid-cols-2 gap-4 pt-4">
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => setOpenModal(true)}
-                        className="px-6 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold rounded-xl shadow-lg"
-                      >
-                        Request Appointment
-                      </motion.button>
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => setChatOpen(true)}
-                        className="px-6 py-4 bg-white border-2 border-sky-200 text-sky-700 font-semibold rounded-xl hover:bg-sky-50"
-                      >
-                        Live Chat Support
-                      </motion.button>
-                    </div>
-
-                    {/* Timings */}
-                    <div className="pt-6 border-t border-gray-100">
-                      <h4 className="font-semibold text-gray-900 mb-3">Operating Hours</h4>
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <p className="text-sm text-gray-500">Visiting Hours</p>
-                          <p className="font-medium">10:00 AM – 6:00 PM</p>
-                        </div>
-                        <div>
-                          <p className="text-sm text-gray-500">Admin Hours</p>
-                          <p className="font-medium">Mon–Sat • 9:00 AM – 5:00 PM</p>
-                        </div>
-                      </div>
-                    </div>
+                  <div>
+                    <h2 className="text-xl md:text-2xl font-bold text-gray-900">Emergency Contact</h2>
+                    <p className="text-sm text-gray-500">24/7 Emergency Line</p>
                   </div>
                 </div>
-
-                {/* FAQ Section - Takes 2/3 width */}
-                <div className="lg:col-span-2">
-                  <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 h-full">
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className="p-3 bg-gradient-to-r from-violet-500 to-purple-500 rounded-xl">
-                        <span className="text-2xl text-white">❓</span>
-                      </div>
-                      <div>
-                        <h2 className="text-2xl font-bold text-gray-900">Frequently Asked Questions</h2>
-                        <p className="text-gray-600">Common queries about our services and procedures</p>
-                      </div>
-                    </div>
-
-                    <div className="space-y-4">
-                      {faqs.map((faq, index) => (
-                        <motion.div
-                          key={index}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                          whileHover={{ x: 5 }}
-                          className="border border-gray-200 rounded-2xl overflow-hidden"
-                        >
-                          <details className="group">
-                            <summary className="cursor-pointer p-6 bg-gradient-to-r from-gray-50 to-white hover:from-sky-50 transition-all flex items-center justify-between">
-                              <span className="font-semibold text-gray-900">{faq.question}</span>
-                              <motion.span
-                                animate={{ rotate: 0 }}
-                                className="text-gray-400 group-open:rotate-180 transition-transform"
-                              >
-                                ▼
-                              </motion.span>
-                            </summary>
-                            <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              className="px-6 pb-6 text-gray-600"
-                            >
-                              {faq.answer}
-                            </motion.div>
-                          </details>
-                        </motion.div>
-                      ))}
-                    </div>
-
-                    {/* Emergency CTA */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.5 }}
-                      className="mt-8 p-6 bg-gradient-to-r from-rose-50 to-red-50 rounded-2xl border border-rose-200"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <h4 className="text-xl font-bold text-gray-900">Need Immediate Assistance?</h4>
-                          <p className="text-gray-600 mt-1">Contact our emergency line for critical care coordination</p>
-                        </div>
-                        <div className="flex gap-3">
-                          <motion.a
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            href="tel:+911122334455"
-                            className="px-6 py-3 bg-gradient-to-r from-red-600 to-rose-500 text-white font-semibold rounded-xl shadow-lg"
-                          >
-                            🚑 Emergency Call
-                          </motion.a>
-                          <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() => setChatOpen(true)}
-                            className="px-6 py-3 bg-white border-2 border-rose-200 text-rose-700 font-semibold rounded-xl"
-                          >
-                            💬 Live Chat
-                          </motion.button>
-                        </div>
-                      </div>
-                    </motion.div>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-
-            {activeTab === "location" && (
-              <motion.div
-                key="location"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-8"
-              >
-                <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
-                  <div className="p-8">
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className="p-3 bg-gradient-to-r from-sky-500 to-cyan-500 rounded-xl">
-                        <span className="text-2xl text-white">📍</span>
-                      </div>
-                      <div>
-                        <h2 className="text-2xl font-bold text-gray-900">Our Location</h2>
-                        <p className="text-gray-600">Proton Critical Care Centre — Kanwar Nagar, Amravati</p>
-                      </div>
-                    </div>
-
-                    <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-lg">
-                      <iframe
-                        title="Proton Hospital Location"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3720.987654321098!2d77.74999999999999!3d21.123456789012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd6a987654321ab%3A0x1234567890abcdef!2sProton%20Critical%20Care%20Centre!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
-                        className="w-full h-96"
-                        style={{ border: 0 }}
-                        allowFullScreen=""
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                      />
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-6 mt-8">
-                      <div className="p-6 bg-gradient-to-br from-sky-50 to-white rounded-2xl border border-sky-100">
-                        <h4 className="font-bold text-gray-900 mb-4">Facility Information</h4>
-                        <ul className="space-y-3">
-                          <li className="flex items-center gap-2">
-                            <span className="text-sky-500">📍</span>
-                            <span className="text-gray-700">Amravati, Maharashtra 444607</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <span className="text-sky-500">🅿️</span>
-                            <span className="text-gray-700">Dedicated visitor parking available</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <span className="text-sky-500">♿</span>
-                            <span className="text-gray-700">Wheelchair accessible facilities</span>
-                          </li>
-                        </ul>
-                      </div>
-
-                      <div className="p-6 bg-gradient-to-br from-cyan-50 to-white rounded-2xl border border-cyan-100">
-                        <h4 className="font-bold text-gray-900 mb-4">Contact Points</h4>
-                        <ul className="space-y-3">
-                          <li>
-                            <p className="text-sm text-gray-500">Reception</p>
-                            <p className="font-medium text-gray-900">+91 98765 43210</p>
-                          </li>
-                          <li>
-                            <p className="text-sm text-gray-500">Patient Relations</p>
-                            <p className="font-medium text-gray-900">patients@protonhospital.com</p>
-                          </li>
-                          <li>
-                            <p className="text-sm text-gray-500">Emergency Access</p>
-                            <p className="font-medium text-gray-900">Gate 1 (24/7)</p>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Emergency CTA for Location Tab */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="bg-gradient-to-r from-rose-50 to-red-50 rounded-2xl p-8 border border-rose-200"
+                
+                <a 
+                  href="tel:+911122334455"
+                  className="block text-2xl md:text-3xl font-bold text-sky-700 hover:text-sky-800 transition-colors"
                 >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="text-xl font-bold text-gray-900">Need Immediate Assistance?</h4>
-                      <p className="text-gray-600 mt-1">Contact our emergency line for critical care coordination</p>
-                    </div>
-                    <div className="flex gap-3">
-                      <motion.a
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        href="tel:+911122334455"
-                        className="px-6 py-3 bg-gradient-to-r from-red-600 to-rose-500 text-white font-semibold rounded-xl shadow-lg"
-                      >
-                        🚑 Emergency Call
-                      </motion.a>
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => setChatOpen(true)}
-                        className="px-6 py-3 bg-white border-2 border-rose-200 text-rose-700 font-semibold rounded-xl"
-                      >
-                        💬 Live Chat
-                      </motion.button>
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </section>
-
-      {/* Appointment Modal */}
-      <AnimatePresence>
-        {openModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-6"
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ type: "spring", damping: 25 }}
-              className="bg-white rounded-3xl w-full max-w-md shadow-2xl"
-            >
-              <div className="p-8">
-                <div className="flex items-center justify-between mb-6">
-                  <div>
-                    <h2 className="text-2xl font-bold text-gray-900">Request Appointment</h2>
-                    <p className="text-gray-600 mt-1">We'll contact you to confirm details</p>
-                  </div>
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => setOpenModal(false)}
-                    className="p-2 rounded-full hover:bg-gray-100"
+                  +91 112 233 4455
+                </a>
+                
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <button
+                    onClick={() => setOpenModal(true)}
+                    className="py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-medium transition-colors shadow-md hover:shadow-lg"
                   >
-                    <span className="text-2xl text-gray-500">×</span>
-                  </motion.button>
+                    Book Appointment
+                  </button>
+                  <button
+                    onClick={() => setChatOpen(true)}
+                    className="py-3 border-2 border-sky-400 hover:border-sky-500 text-sky-700 hover:text-sky-800 rounded-xl font-medium transition-all hover:bg-sky-50"
+                  >
+                    Live Chat Support
+                  </button>
+                </div>
+                
+                <div className="mt-8 pt-6 border-t border-gray-100">
+                  <p className="font-medium text-gray-700">Other Contacts</p>
+                  <div className="mt-2 space-y-2">
+                    <a href="mailto:info@protonhospital.com" className="block text-gray-600 hover:text-sky-600">
+                      info@protonhospital.com
+                    </a>
+                    <p className="text-gray-600">For non-emergency: +91 90000 33333</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* FAQ */}
+              <div className="lg:col-span-2 bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-xl">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 rounded-full bg-sky-100 flex items-center justify-center">
+                    <span className="text-2xl">❓</span>
+                  </div>
+                  <h2 className="text-xl md:text-2xl font-bold text-gray-900">Frequently Asked Questions</h2>
+                </div>
+                
+                <div className="space-y-4">
+                  {faqs.map((faq) => (
+                    <details 
+                      key={faq.id}
+                      className="group border border-gray-200 rounded-xl p-4 hover:border-sky-300 transition-colors"
+                    >
+                      <summary className="font-semibold text-gray-900 cursor-pointer list-none flex justify-between items-center">
+                        <span>{faq.question}</span>
+                        <span className="transform transition-transform group-open:rotate-180">▼</span>
+                      </summary>
+                      <motion.p 
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        className="mt-3 text-gray-600 leading-relaxed pl-2"
+                      >
+                        {faq.answer}
+                      </motion.p>
+                    </details>
+                  ))}
+                </div>
+              </div>
+              
+            </motion.div>
+          )}
+
+          {/* LOCATION TAB - UPDATED FOR KANWAR NAGAR, AMRAVATI */}
+          {activeTab === "location" && (
+            <motion.div
+              key="location"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="space-y-6"
+            >
+              <div className="bg-white rounded-2xl md:rounded-3xl shadow-xl p-6 md:p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center">
+                    <span className="text-2xl">📍</span>
+                  </div>
+                  <div>
+                    <h2 className="text-xl md:text-2xl font-bold text-gray-900">Our Location</h2>
+                    <p className="text-gray-600">Proton Critical Care Center, Amravati</p>
+                  </div>
+                </div>
+                
+                <div className="grid md:grid-cols-3 gap-6 mb-6">
+                  <div className="p-4 bg-gray-50 rounded-xl">
+                    <p className="font-medium text-gray-900 flex items-center gap-2">
+                      <span>🏥</span> Full Address
+                    </p>
+                    <p className="text-gray-600 mt-2 leading-relaxed">
+                      {locationDetails.address}
+                    </p>
+                    <a 
+                      href={`https://maps.google.com/?q=${encodeURIComponent(locationDetails.address)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block mt-3 text-sky-600 hover:text-sky-700 font-medium text-sm"
+                    >
+                      Open in Google Maps →
+                    </a>
+                  </div>
+                  
+                  <div className="p-4 bg-gray-50 rounded-xl">
+                    <p className="font-medium text-gray-900 flex items-center gap-2">
+                      <span>🚑</span> Emergency Access
+                    </p>
+                    <p className="text-gray-600 mt-2">
+                      {locationDetails.emergencyEntrance}
+                    </p>
+                    <p className="text-sm text-gray-500 mt-2">
+                      • Ambulance bay with direct ICU access<br/>
+                      • Emergency department open 24/7<br/>
+                      • Critical care team on standby
+                    </p>
+                  </div>
+                  
+                  <div className="p-4 bg-gray-50 rounded-xl">
+                    <p className="font-medium text-gray-900 flex items-center gap-2">
+                      <span>🅿️</span> Parking & Transport
+                    </p>
+                    <p className="text-gray-600 mt-2">
+                      {locationDetails.parking}
+                    </p>
+                    <p className="text-sm text-gray-500 mt-2">
+                      • Auto-rickshaw stand: 100m from entrance<br/>
+                      • Bus stop: 200m (Routes: 101, 202, 305)<br/>
+                      • Taxi service available at gate
+                    </p>
+                  </div>
                 </div>
 
-                <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); setOpenModal(false); }}>
+                {/* Additional location info */}
+                <div className="grid md:grid-cols-2 gap-6 mt-8 pt-8 border-t border-gray-100">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
-                    <input
-                      required
-                      className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none transition"
-                      placeholder="Enter your full name"
-                    />
+                    <h3 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                      <span>⏰</span> Visiting Hours
+                    </h3>
+                    <ul className="text-gray-600 space-y-1">
+                      <li>• ICU: 10:00 AM – 6:00 PM (2 visitors)</li>
+                      <li>• General Ward: 8:00 AM – 8:00 PM (3 visitors)</li>
+                      <li>• Pediatric Unit: 9:00 AM – 7:00 PM (Parents allowed 24/7)</li>
+                      <li>• Emergency: Immediate family only</li>
+                    </ul>
                   </div>
-
+                  
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                    <input
-                      required
-                      type="tel"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none transition"
-                      placeholder="+91 98765 43210"
-                    />
+                    <h3 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
+                      <span>📍</span> Nearby Landmarks
+                    </h3>
+                    <ul className="text-gray-600 space-y-1">
+                      <li>• 500m from Amravati Railway Station</li>
+                      <li>• 1km from City Bus Stand</li>
+                      <li>• 2km from Government Medical College</li>
+                      <li>• Opposite Kanwar Nagar Police Station</li>
+                    </ul>
                   </div>
+                </div>
+              </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Preferred Department</label>
-                    <select className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none transition">
-                      <option>Critical Care Unit</option>
-                      <option>Cardiology Emergency</option>
-                      <option>Trauma & Emergency</option>
-                      <option>General Consultation</option>
-                    </select>
-                  </div>
+              {/* Google Map for Kanwar Nagar, Amravati */}
+              <div className="rounded-2xl md:rounded-3xl shadow-xl overflow-hidden border border-gray-200">
+                <div className="bg-white p-4 border-b border-gray-200">
+                  <h3 className="font-medium text-gray-900 flex items-center gap-2">
+                    <span>🗺️</span> Interactive Map - Find Us Here
+                  </h3>
+                  <p className="text-sm text-gray-600 mt-1">
+                    Use the map below for directions to our facility
+                  </p>
+                </div>
+                <iframe
+                  title="Proton Critical Care Center Location - Kanwar Nagar, Amravati"
+                  className="w-full h-[400px] md:h-[500px]"
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src={locationDetails.mapUrl}
+                />
+                <div className="bg-gray-50 p-4 border-t border-gray-200 text-sm text-gray-600">
+                  <p className="flex items-center gap-2">
+                    <span>💡</span> 
+                    Tip: Click the Google Maps logo in the bottom left to open full map with directions
+                  </p>
+                </div>
+              </div>
 
-                  <div className="flex gap-3">
-                    <motion.button
-                      type="submit"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="flex-1 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold rounded-xl shadow-lg"
-                    >
-                      Submit Request
-                    </motion.button>
-                    <motion.button
-                      type="button"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => setOpenModal(false)}
-                      className="flex-1 px-6 py-3 bg-white border-2 border-gray-200 text-gray-700 font-semibold rounded-xl"
-                    >
-                      Cancel
-                    </motion.button>
+              {/* Directions section */}
+              <div className="bg-white rounded-2xl md:rounded-3xl shadow-xl p-6 md:p-8">
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-4">How to Reach Us</h3>
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div className="p-4 border border-gray-200 rounded-xl">
+                    <p className="font-medium text-gray-900 mb-2 flex items-center gap-2">
+                      <span>🚗</span> By Car/Taxi
+                    </p>
+                    <p className="text-gray-600 text-sm">
+                      From Amravati Railway Station: 10 mins via Station Road<br/>
+                      From Bus Stand: 15 mins via Rajapeth<br/>
+                      Use GPS coordinates: {locationDetails.coordinates.lat}, {locationDetails.coordinates.lng}
+                    </p>
                   </div>
-                </form>
+                  
+                  <div className="p-4 border border-gray-200 rounded-xl">
+                    <p className="font-medium text-gray-900 mb-2 flex items-center gap-2">
+                      <span>🚌</span> By Public Transport
+                    </p>
+                    <p className="text-gray-600 text-sm">
+                      Bus Routes: 101, 202, 305 to Kanwar Nagar stop<br/>
+                      Auto-rickshaw: Available from all major points<br/>
+                      Nearest metro station: Coming soon
+                    </p>
+                  </div>
+                  
+                  <div className="p-4 border border-gray-200 rounded-xl">
+                    <p className="font-medium text-gray-900 mb-2 flex items-center gap-2">
+                      <span>🚑</span> Emergency Transport
+                    </p>
+                    <p className="text-gray-600 text-sm">
+                      Call our ambulance: +91 112 233 4455<br/>
+                      Helicopter pad: Available for air ambulances<br/>
+                      Critical care transport: Available 24/7
+                    </p>
+                  </div>
+                </div>
               </div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
 
-      {/* Chat Panel */}
+        </AnimatePresence>
+      </section>
+
+      {/* CHAT WIDGET */}
       <AnimatePresence>
         {chatOpen && (
           <motion.div
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 100 }}
-            className="fixed right-6 bottom-6 w-96 z-50"
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            className="fixed bottom-4 right-4 w-full max-w-md bg-white shadow-2xl rounded-2xl overflow-hidden border border-gray-200"
+            style={{ zIndex: 50 }}
           >
-            <div className="bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
-              {/* Chat Header */}
-              <div className="bg-gradient-to-r from-cyan-600 to-sky-600 px-6 py-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-white/20 rounded-lg">
-                      <span className="text-white text-xl">💬</span>
-                    </div>
-                    <div>
-                      <p className="font-bold text-white">Live Support Chat</p>
-                      <p className="text-sm text-white/80">Proton Critical Care Team</p>
-                    </div>
-                  </div>
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => setChatOpen(false)}
-                    className="text-white/80 hover:text-white text-2xl"
-                  >
-                    ×
-                  </motion.button>
+            {/* Chat Header */}
+            <div className="bg-gradient-to-r from-sky-600 to-teal-600 text-white px-4 py-3 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
+                  <span>💬</span>
+                </div>
+                <div>
+                  <p className="font-semibold">Live Support</p>
+                  <p className="text-xs opacity-90">Typically replies within 2 minutes</p>
                 </div>
               </div>
-
-              {/* Chat Messages */}
-              <div className="h-96 p-4 space-y-4 overflow-y-auto bg-gradient-to-b from-gray-50 to-white">
-                {messages.map((msg, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className={`flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}
-                  >
-                    <div className={`max-w-[80%] px-4 py-3 rounded-2xl ${
-                      msg.from === 'bot' 
-                        ? 'bg-white border border-gray-200' 
-                        : 'bg-gradient-to-r from-cyan-500 to-sky-500 text-white'
-                    }`}>
-                      {msg.text}
-                    </div>
-                  </motion.div>
-                ))}
-                <div ref={chatEndRef} />
-              </div>
-
-              {/* Chat Input */}
-              <form onSubmit={sendMessage} className="p-4 border-t border-gray-200 bg-white">
-                <div className="flex gap-2">
-                  <input
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    className="flex-1 px-4 py-3 rounded-xl border border-gray-300 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 outline-none"
-                    placeholder="Type your message..."
-                  />
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    type="submit"
-                    className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-sky-500 text-white font-semibold rounded-xl shadow-lg"
-                  >
-                    Send
-                  </motion.button>
-                </div>
-              </form>
+              <button 
+                onClick={() => setChatOpen(false)}
+                className="text-xl hover:bg-white/20 rounded-full w-8 h-8 flex items-center justify-center transition-colors"
+                aria-label="Close chat"
+              >
+                ×
+              </button>
             </div>
+
+            {/* Messages */}
+            <div className="h-80 p-4 overflow-y-auto bg-gray-50">
+              {messages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex mb-3 ${
+                    message.from === "user" ? "justify-end" : "justify-start"
+                  }`}
+                >
+                  <div className={`max-w-[80%] ${message.from === "user" ? "order-2" : "order-1"}`}>
+                    <div className={`rounded-2xl px-4 py-2 ${
+                      message.from === "user" 
+                        ? "bg-sky-500 text-white rounded-br-none" 
+                        : "bg-white border border-gray-200 text-gray-800 rounded-bl-none"
+                    }`}>
+                      <p>{message.text}</p>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-1 px-1">
+                      {message.timestamp} {message.from === "user" ? "• You" : "• Support"}
+                    </p>
+                  </div>
+                </div>
+              ))}
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Input Form */}
+            <form onSubmit={sendMessage} className="p-4 border-t border-gray-200 bg-white">
+              <div className="flex gap-2">
+                <input
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  className="flex-1 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+                  placeholder="Type your message here..."
+                  autoFocus
+                />
+                <button 
+                  type="submit"
+                  className="px-6 bg-sky-500 hover:bg-sky-600 text-white rounded-xl font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={!input.trim()}
+                >
+                  Send
+                </button>
+              </div>
+              <p className="text-xs text-gray-500 mt-2 text-center">
+                Chat with our support team for immediate assistance
+              </p>
+            </form>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Floating Chat Button */}
+      {/* Chat toggle button when closed */}
       {!chatOpen && (
-        <motion.button
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+        <button
           onClick={() => setChatOpen(true)}
-          className="fixed right-6 bottom-6 z-40 p-4 bg-gradient-to-r from-cyan-500 to-sky-500 text-white rounded-full shadow-2xl"
+          className="fixed bottom-6 right-6 bg-sky-500 hover:bg-sky-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center gap-2"
+          style={{ zIndex: 40 }}
+          aria-label="Open live chat"
         >
-          <span className="text-2xl">💬</span>
-        </motion.button>
+          <span className="text-xl">💬</span>
+          <span className="hidden sm:inline font-medium">Live Chat</span>
+        </button>
       )}
+
     </div>
   );
 }

@@ -18,11 +18,10 @@ export default function App() {
       <main className="flex-grow">
         <ScrollToTop behavior="smooth" /> 
         <Routes>
-         
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
           <Route path="/doctors" element={<Doctors />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/contact" element={<Contact/>} />
         </Routes>
       </main>
 
