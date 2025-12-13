@@ -1,5 +1,18 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import icu from "../assets/icu.jpeg";
+import drspatel from "../assets/Dr.S.Patel.jpeg";
+import drrmehta from "../assets/Dr.R.Mehta.jpg";
+import care from "../assets/critical-care-ward.jpg";
+import cardiac from "../assets/cardiac.jpeg";
+import post from "../assets/post-operative-care.jpg";
+import joshi from "../assets/m-joshi.jpeg";
+import Emergency from "../assets/Emergency.avif";
+import trauma from "../assets/trauma.avif";
+import kumar from "../assets/Dr.A.Kumar.avif";
+import reddy from "../assets/reddy.avif";
+
+
 
 export default function Services() {
   const [hoveredService, setHoveredService] = useState(null);
@@ -8,42 +21,42 @@ export default function Services() {
   const services = [
     {
       title: "24×7 ICU Care",
-      img: "https://images.unsplash.com/photo-1576765608535-5dcd3d0ecf9b?auto=format&fit=crop&w=1200&q=80",
+      img: icu,
       desc: "Round-the-clock ICU support with advanced medical monitoring.",
       icon: "🕒",
       features: ["Continuous Monitoring", "Ventilator Support", "Critical Care Nurses"]
     },
     {
       title: "Emergency Treatment",
-      img: "https://images.unsplash.com/photo-1600959907703-125ba1374a12?auto=format&fit=crop&w=1200&q=80",
+      img: Emergency,
       desc: "Immediate care for trauma, cardiac arrest, stroke, and accidents.",
       icon: "⚡",
       features: ["Rapid Response", "Trauma Team", "Emergency Surgery"]
     },
     {
       title: "Critical Care Ward",
-      img: "https://images.unsplash.com/photo-1603398939215-5cee3e5e6dca?auto=format&fit=crop&w=1200&q=80",
+      img: care,
       desc: "Specialized units for critical patients requiring life support.",
       icon: "🏥",
       features: ["Life Support", "Specialized Monitoring", "Dedicated Staff"]
     },
     {
       title: "Cardiac Emergency",
-      img: "https://images.unsplash.com/photo-1586773860383-c54f2e7dc3ef?auto=format&fit=crop&w=1200&q=80",
+      img: cardiac,
       desc: "Rapid response for heart attacks and severe cardiac conditions.",
       icon: "❤️",
       features: ["Cardiac Monitoring", "ECG Analysis", "Emergency Cath Lab"]
     },
     {
       title: "Trauma Management",
-      img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80",
+      img:trauma,
       desc: "Stabilization and expert treatment for accident-related injuries.",
       icon: "🚑",
       features: ["Trauma Team", "Surgical Intervention", "Rehabilitation"]
     },
     {
       title: "Post-Operative Care",
-      img: "https://images.unsplash.com/photo-1606248897732-2c6f3d9db18f?auto=format&fit=crop&w=1200&q=80",
+      img: post,
       desc: "Safe recovery with continuous nurse and doctor supervision.",
       icon: "🩺",
       features: ["Recovery Monitoring", "Pain Management", "Physical Therapy"]
@@ -55,7 +68,7 @@ export default function Services() {
       id: "kumar",
       name: "Dr. A. Kumar",
       spec: "Critical Care Specialist",
-      img: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=800&q=80",
+      img:kumar,
       timing: "10:00 AM - 4:00 PM",
       exp: "12+ years",
       education: "MD, Critical Care Medicine",
@@ -65,7 +78,7 @@ export default function Services() {
       id: "patel",
       name: "Dr. S. Patel",
       spec: "Emergency Physician",
-      img: "https://images.unsplash.com/photo-1594824434340-7e7dfc37cabb?auto=format&fit=crop&w=800&q=80",
+      img:drspatel,
       timing: "12:00 PM - 8:00 PM",
       exp: "9+ years",
       education: "MD, Emergency Medicine",
@@ -75,7 +88,7 @@ export default function Services() {
       id: "mehta",
       name: "Dr. R. Mehta",
       spec: "Cardiac Intensivist",
-      img: "https://images.unsplash.com/photo-1612349316293-9a9d910e5e6e?auto=format&fit=crop&w=800&q=80",
+      img: drrmehta,
       timing: "9:00 AM - 5:00 PM",
       exp: "15+ years",
       education: "DM, Cardiology",
@@ -120,13 +133,13 @@ export default function Services() {
     {
       name: "S. Reddy",
       quote: "Quick, compassionate ICU care saved my father. Staff were professional and caring throughout the recovery.",
-      img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80",
+      img: reddy,
       relation: "Family Member"
     },
     {
       name: "M. Joshi",
       quote: "Excellent emergency response and clear communication. Highly recommend the critical care team for any emergency.",
-      img: "https://images.unsplash.com/photo-1545996124-2d1d0a8d6aa0?auto=format&fit=crop&w=400&q=80",
+      img: joshi,
       relation: "Patient"
     }
   ];
@@ -266,26 +279,7 @@ export default function Services() {
                         ))}
                       </div>
                       
-                      <motion.div
-                        className="flex gap-3 pt-4"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: hoveredService === index ? 1 : 0 }}
-                      >
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="px-4 py-2 bg-white text-sky-700 font-semibold rounded-lg flex-1"
-                        >
-                          Learn More
-                        </motion.button>
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="px-4 py-2 bg-cyan-500 text-white font-semibold rounded-lg flex-1"
-                        >
-                          Contact
-                        </motion.button>
-                      </motion.div>
+                     
                     </motion.div>
                   </div>
                 </div>

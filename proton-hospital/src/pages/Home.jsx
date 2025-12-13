@@ -1,25 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
+import advancedVentilation from "../assets/advanced-ventilation.jpg";
+import drspatel from "../assets/Dr.S.Patel.jpeg";
+import drrmehta from "../assets/Dr.R.Mehta.jpg";
+import trauma from "../assets/trauma.avif";
+import critical from "../assets/cardiac-critical-care.avif";
+import kumar from "../assets/Dr.A.Kumar.avif";
+import rjoshi from "../assets/rjoshi.avif";
+import kapoor from "../assets/kapoor.avif";
+import main from "../assets/main.png";
 
 const imageCards = [
   {
     title: 'Advanced Ventilation',
     subtitle: 'State-class ventilators',
-    img: 'https://images.unsplash.com/photo-1580281657521-6bd5b8b972f9?auto=format&fit=crop&w=1200&q=80',
+    img: advancedVentilation,
     content: 'Closed-loop ventilation modes, bedside monitoring and fast-response alarm protocols.',
     icon: '🫁'
   },
   {
     title: 'Trauma & Emergency',
     subtitle: 'Rapid response unit',
-    img: 'https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=1200&q=80',
+    img: trauma,
     content: 'Dedicated trauma bay with point-of-care imaging and multidisciplinary team activation.',
     icon: '⚡'
   },
   {
     title: 'Cardiac Critical Care',
     subtitle: 'Post-op support',
-    img: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=1200&q=80',
+    img: critical,
     content: 'Continuous hemodynamic monitoring, invasive pressure management and targeted rehab planning.',
     icon: '❤️'
   }
@@ -165,7 +174,7 @@ export default function HomePage() {
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                 <motion.img 
-                  src="https://i.pinimg.com/originals/eb/35/91/eb3591c54fb651f20d157ed7099c4576.jpg" 
+                  src = {main}
                   alt="Hospital ICU"
                   className="w-full h-[600px] object-cover"
                   animate={{ scale: [1, 1.05, 1] }}
@@ -399,21 +408,21 @@ export default function HomePage() {
               {
                 name: 'Dr. A. Kumar',
                 role: 'Critical Care Specialist',
-                img: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=800&q=80',
+                img: kumar,
                 bio: '12+ years ICU experience handling ventilator support, trauma care and multi-organ failure.',
                 specialty: 'Ventilator Management'
               },
               {
                 name: 'Dr. S. Patel',
                 role: 'Emergency Physician',
-                img: 'https://images.unsplash.com/photo-1594824434340-7e7dfc37cabb?auto=format&fit=crop&w=800&q=80',
+                img: drspatel,
                 bio: 'Expert in emergency cardiac care, stroke intervention and mass-casualty triage.',
                 specialty: 'Emergency Medicine'
               },
               {
                 name: 'Dr. R. Mehta',
                 role: 'Cardiac Intensivist',
-                img: 'https://images.unsplash.com/photo-1612349316293-9a9d910e5e6e?auto=format&fit=crop&w=800&q=80',
+                img: drrmehta,
                 bio: '15+ years cardiac ICU experience with advanced ACLS and post-op support.',
                 specialty: 'Cardiac Care'
               }
@@ -504,19 +513,14 @@ export default function HomePage() {
                 quote: "Transfer coordination and ambulance dispatch were immediate — care transition was seamless. The team's professionalism gave us confidence during a difficult time.",
                 author: "R. Joshi",
                 relation: "Family Member",
-                image: "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?auto=format&fit=crop&w=400&q=80"
+                image: rjoshi
               },
               {
                 quote: "Clinical team demonstrated calm leadership during a complex emergency — outcomes were excellent. Their transparent communication kept us informed at every step.",
                 author: "S. Kapoor",
                 relation: "Patient",
-                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"
-              },{
-                quote: "Clinical team demonstrated calm leadership during a complex emergency — outcomes were excellent. Their transparent communication kept us informed at every step.",
-                author: "S. Kapoor",
-                relation: "Patient",
-                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"
-              }
+                image:kapoor 
+              },
             ].map((story, index) => (
               <motion.div
                 key={index}

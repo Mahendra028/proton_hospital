@@ -1,5 +1,12 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import kumar from "../assets/Dr.A.Kumar.avif";
+import drspatel from "../assets/Dr.S.Patel.jpeg";
+import drrmehta from "../assets/Dr.R.Mehta.jpg";
+import Shah from "../assets/Shah.avif";
+import Desai from "../assets/Desai.avif";
+import rao from "../assets/rao.webp";
+
 
 const doctors = [
   {
@@ -7,7 +14,7 @@ const doctors = [
     name: "Dr. A. Kumar",
     spec: "Critical Care Specialist",
     timing: "10:00 AM - 4:00 PM",
-    img: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=800&q=80",
+    img: kumar,
     details: "12+ years ICU experience handling ventilator support, trauma care, multi-organ failure stabilization and emergency critical care protocols.",
     qual: "MBBS, MD (Critical Care)",
     awards: ["Best ICU Practitioner 2020", "ABEC Fellowship", "Critical Care Excellence Award"],
@@ -21,7 +28,7 @@ const doctors = [
     name: "Dr. S. Patel",
     spec: "Emergency Physician",
     timing: "12:00 PM - 8:00 PM",
-    img: "https://images.unsplash.com/photo-1594824434340-7e7dfc37cabb?auto=format&fit=crop&w=800&q=80",
+    img: drspatel,
     details: "Expert in emergency cardiac care, stroke intervention, accident trauma, and rapid emergency response under high-pressure conditions.",
     qual: "MBBS, DNB (Emergency Medicine)",
     awards: ["Trauma Response Award 2019", "Emergency Excellence 2022"],
@@ -35,7 +42,7 @@ const doctors = [
     name: "Dr. R. Mehta",
     spec: "Cardiac Intensivist",
     timing: "9:00 AM - 5:00 PM",
-    img: "https://images.unsplash.com/photo-1612349316293-9a9d910e5e6e?auto=format&fit=crop&w=800&q=80",
+    img: drrmehta,
     details: "15+ years experience in cardiac ICU, post-operative cardiac support, ventilator care, advanced ACLS and critical cardiac interventions.",
     qual: "MBBS, MD (Cardiology)",
     awards: ["Cardiac Care Excellence 2021", "ACLS Instructor Award"],
@@ -49,7 +56,7 @@ const doctors = [
     name: "Dr. N. Shah",
     spec: "Pulmonologist & Intensivist",
     timing: "2:00 PM - 10:00 PM",
-    img: "https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?auto=format&fit=crop&w=800&q=80",
+    img: Shah,
     details: "Specialises in complex ventilator weaning, ARDS management and multi-disciplinary respiratory critical care with focus on pulmonary rehabilitation.",
     qual: "MBBS, MD (Pulmonology)",
     awards: ["Pulmonary Excellence Award", "Research Innovation 2020"],
@@ -64,13 +71,13 @@ const visiting = [
   { 
     name: "Dr. L. Desai", 
     spec: "Nephrologist", 
-    img: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&w=800&q=80",
+    img: Desai,
     expertise: "Renal Critical Care"
   },
   { 
     name: "Dr. M. Rao", 
     spec: "Neurologist", 
-    img: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=800&q=80",
+    img: rao,
     expertise: "Neuro Critical Care"
   }
 ];
