@@ -123,7 +123,7 @@ export default function HomePage() {
       <Patientstories/>
 
       {/* CAPACITY METRICS */}
-      <section className="py-12 px-4 bg-white">
+      <section className="px-4 py-12 bg-white">
         <Capacity />
       </section>
 
