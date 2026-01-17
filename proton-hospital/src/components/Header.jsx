@@ -1,233 +1,336 @@
-import React, { useState, useEffect } from "react";
+
+// import React, { useEffect, useState } from "react";
+// import { Link, useLocation } from "react-router-dom";
+// import { motion } from "framer-motion";
+// import { Home, User, Stethoscope, Phone, Info } from "lucide-react";
+
+// export default function Header() {
+//   const [scrolled, setScrolled] = useState(false);
+//   const location = useLocation();
+
+//   useEffect(() => {
+//     const onScroll = () => setScrolled(window.scrollY > 80);
+//     window.addEventListener("scroll", onScroll);
+//     return () => window.removeEventListener("scroll", onScroll);
+//   }, []);
+
+//   const navItems = [
+//     { path: "/", label: "Home", icon: Home },
+//     { path: "/about", label: "About", icon: Info },
+//     { path: "/ourservices", label: "Services", icon: Stethoscope },
+//     { path: "/doctors", label: "Doctors", icon: User },
+//     { path: "/contact", label: "Contact", icon: Phone },
+//   ];
+
+//   const isActive = (path) => location.pathname === path;
+
+//   return (
+//     <>
+//       <motion.header
+//         animate={{
+//           top: scrolled ? 20 : 24,
+//           width: "100%",
+//         }}
+//         transition={{ duration: 0.4, ease: "easeInOut" }}
+//         className="fixed z-50 -translate-x-1/2 left-1/2"
+//       >
+//         <div
+//           className="
+//             relative
+//             flex items-center
+//             h-16
+//             px-8
+//             bg-white
+//             rounded-full
+//             shadow-[0_10px_30px_rgba(0,0,0,0.08)]
+//             w-[1400px]
+//             max-w-[98vw]
+//             mx-auto
+//           "
+//         >
+//           {/* LEFT — NAV ITEMS */}
+//           <nav className="flex items-center gap-6">
+//             {navItems.map((item) => {
+//               const Icon = item.icon;
+//               return (
+//                 <Link
+//                   key={item.path}
+//                   to={item.path}
+//                   className={`flex items-center gap-2 text-sm font-medium transition
+//                     ${
+//                       isActive(item.path)
+//                         ? "text-gray-900 nav-active-underline"
+//                         : "text-gray-600 hover:text-gray-900"
+//                     }
+//                   `}
+//                 >
+//                   <Icon size={16} />
+//                   <span>{item.label}</span>
+//                 </Link>
+//               );
+//             })}
+//           </nav>
+
+//           {/* CENTER LOGO (DESKTOP ONLY – SAFE) */}
+//           <div className="absolute flex items-center gap-2 -translate-x-1/2 left-1/2">
+//             <img
+//               src="/images/proton-logo.png"
+//               alt="Proton Hospital"
+//               className="w-8 h-8"
+//             />
+//             <span className="text-base font-semibold text-gray-900">
+//               Proton Hospital
+//             </span>
+//           </div>
+
+//           {/* RIGHT CTA */}
+//           <div className="ml-auto">
+//             <Link
+//               to="/book-appointment"
+//               className="inline-flex items-center h-10 px-6 text-sm font-medium text-white transition bg-red-500 rounded-full hover:bg-red-600"
+//             >
+//               Book Appointment
+//             </Link>
+//           </div>
+//         </div>
+//       </motion.header>
+
+//       {/* LOCAL STYLES ONLY */}
+//   <style>
+// {`
+//   .nav-active-underline {
+//     position: relative;
+//   }
+//   .nav-active-underline::after {
+//     content: "";
+//     position: absolute;
+//     left: 0;
+//     bottom: -6px;
+//     height: 2px;
+//     width: 100%;
+//     background-color: #dc2626;
+//   }
+
+//   /* ================= MOBILE FIX ================= */
+//   @media (max-width: 1023px) {
+
+//     /* Stick navbar EXACTLY to bottom (NO GAP) */
+//     header {
+//       top: auto !important;
+//       bottom: 0 !important;
+//     }
+
+//     header > div {
+//       height: 72px !important;
+//       padding: 0 14px !important;
+//       border-radius: 20px 20px 0 0 !important;
+//     }
+
+//     header nav {
+//       width: 100%;
+//       display: flex !important;
+//       justify-content: space-between;
+//       gap: 0 !important;
+//     }
+
+//     header nav a {
+//       flex: 1;
+//       display: flex;
+//       flex-direction: column;
+//       align-items: center;
+//       font-size: 11px;
+//       gap: 4px;
+//       color: #374151;
+//     }
+
+//     header nav a span {
+//       display: block !important;
+//     }
+
+//     /* Remove underline on mobile */
+//     .nav-active-underline::after {
+//       display: none;
+//     }
+
+//     /* Hide Book Appointment button on mobile */
+//     header > div > div:last-child {
+//       display: none !important;
+//     }
+
+//     /* Hide center logo (as requested earlier) */
+//     header > div > div.absolute {
+//       display: none !important;
+//     }
+//   }
+// `}
+// </style>
+
+//     </>
+//   );
+// }
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { Home, User, Stethoscope, Phone, Info } from "lucide-react";
+
 
 export default function Header() {
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const navItems = [
-    { path: "/", label: "Home",},
-    { path: "/services", label: "Services",  },
-    { path: "/doctors", label: "Doctors",  },
-    { path: "/contact", label: "Contact" }
+    { path: "/", label: "Home", icon: Home },
+    { path: "/about", label: "About", icon: Info },
+    { path: "/ourservices", label: "Services", icon: Stethoscope },
+    { path: "/doctors", label: "Doctors", icon: User },
+    { path: "/contact", label: "Contact", icon: Phone },
   ];
 
   const isActive = (path) => location.pathname === path;
 
+  /* ✅ FIX: scroll to top if same route clicked */
+  const handleNavClick = (path) => {
+    if (location.pathname === path) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-sky-100"
-            : "bg-gradient-to-r from-sky-900 via-sky-800 to-cyan-800"
-        }`}
+        animate={{
+          top: scrolled ? 20 : 24,
+          width: "100%",
+        }}
+        transition={{ duration: 0.4, ease: "easeInOut" }}
+        className="fixed z-50 -translate-x-1/2 left-1/2"
       >
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            
-            {/* Logo */}
-            <motion.div 
-              className="flex items-center gap-3"
-              whileHover={{ scale: 1.02 }}
-            >
-              <Link to="/" className="flex items-center gap-3">
-                <div className="relative">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                    scrolled ? "bg-gradient-to-r from-sky-600 to-cyan-500" : "bg-white"
-                  }`}>
-                    <span className={`text-lg font-bold ${
-                      scrolled ? "text-white" : "text-sky-700"
-                    }`}>P</span>
-                  </div>
-                  <motion.div
-                    className="absolute -inset-1 rounded-full border-2 border-sky-300/30"
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  />
-                </div>
-                <div>
-                  <h1 className={`text-xl font-bold tracking-tight ${
-                    scrolled ? "text-sky-800" : "text-white"
-                  }`}>
-                    Proton Medical
-                  </h1>
-                  <p className={`text-xs ${
-                    scrolled ? "text-sky-600" : "text-sky-200"
-                  }`}>
-                    Critical Care Centre
-                  </p>
-                </div>
-              </Link>
-            </motion.div>
-
-            {/* Desktop Navigation - Simple links */}
-            <nav className="hidden lg:flex items-center gap-1">
-              {navItems.map((item) => (
-                <motion.div
+        <div
+          className="
+            relative
+            flex items-center
+            h-16
+            px-8
+            bg-white
+            rounded-full
+            shadow-[0_10px_30px_rgba(0,0,0,0.08)]
+            w-[1400px]
+            max-w-[98vw]
+            mx-auto
+          "
+        >
+          {/* LEFT — NAV ITEMS */}
+          <nav className="flex items-center gap-6">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link
                   key={item.path}
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Link
-                    to={item.path}
-                    className={`relative px-5 py-3 rounded-xl font-medium transition-all duration-300 flex items-center gap-2 ${
+                  to={item.path}
+                  onClick={() => handleNavClick(item.path)}
+                  className={`flex items-center gap-2 text-sm font-medium transition
+                    ${
                       isActive(item.path)
-                        ? scrolled
-                          ? "bg-sky-100 text-sky-700"
-                          : "bg-white/20 text-white"
-                        : scrolled
-                        ? "text-gray-700 hover:text-sky-600 hover:bg-sky-50"
-                        : "text-sky-100 hover:text-white hover:bg-white/10"
-                    }`}
-                  >
-                    <span className="font-semibold">{item.label}</span>
-                    {isActive(item.path) && (
-                      <motion.div
-                        layoutId="activeIndicator"
-                        className="absolute bottom-2 left-1/2 w-6 h-1 bg-cyan-400 rounded-full -translate-x-1/2"
-                      />
-                    )}
-                  </Link>
-                </motion.div>
-              ))}
-              
-              {/* Emergency Button */}
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="ml-4"
-              >
-                <a
-                  href="tel:+919876543210"
-                  className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-600 to-rose-500 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+                        ? "text-gray-900 nav-active-underline"
+                        : "text-gray-600 hover:text-gray-900"
+                    }
+                  `}
                 >
-                  
-                  <span>Emergency</span>
-                </a>
-              </motion.div>
-            </nav>
+                  <Icon size={16} />
+                  <span>{item.label}</span>
+                </Link>
+              );
+            })}
+          </nav>
 
-            {/* Mobile Menu Button */}
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className={`lg:hidden p-3 rounded-xl ${
-                scrolled
-                  ? "bg-sky-100 text-sky-700"
-                  : "bg-white/20 text-white"
-              }`}
-              aria-label="Menu"
+          {/* CENTER LOGO (DESKTOP ONLY) */}
+          <div className="absolute flex items-center gap-2 -translate-x-1/2 left-1/2">
+            <img
+              src="/images/proton-logo.png"
+              alt="Proton Hospital"
+              className="w-8 h-8"
+            />
+            <span className="text-base font-semibold text-gray-900">
+              Proton Hospital
+            </span>
+          </div>
+
+          {/* RIGHT CTA */}
+          <div className="ml-auto">
+            <Link
+              to="/bookappointment"
+              className="inline-flex items-center h-10 px-6 text-sm font-medium text-white transition bg-red-500 rounded-full hover:bg-red-600"
             >
-              <div className="w-6 h-6 relative">
-                <motion.span
-                  animate={mobileOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-                  className={`absolute left-0 w-full h-0.5 ${
-                    scrolled ? "bg-sky-700" : "bg-white"
-                  }`}
-                />
-                <motion.span
-                  animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-                  className={`absolute left-0 top-2 w-full h-0.5 ${
-                    scrolled ? "bg-sky-700" : "bg-white"
-                  }`}
-                />
-                <motion.span
-                  animate={mobileOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-                  className={`absolute left-0 top-4 w-full h-0.5 ${
-                    scrolled ? "bg-sky-700" : "bg-white"
-                  }`}
-                />
-              </div>
-            </motion.button>
+              Book Appointment
+            </Link>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {mobileOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden overflow-hidden"
-            >
-              <div className={`px-6 py-4 space-y-1 ${
-                scrolled
-                  ? "bg-white border-t border-sky-100"
-                  : "bg-gradient-to-b from-sky-800 to-sky-900"
-              }`}>
-                {navItems.map((item, index) => (
-                  <motion.div
-                    key={item.path}
-                    initial={{ x: -50, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <Link
-                      to={item.path}
-                      onClick={() => setMobileOpen(false)}
-                      className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all ${
-                        isActive(item.path)
-                          ? scrolled
-                            ? "bg-sky-100 text-sky-700"
-                            : "bg-white/20 text-white"
-                          : scrolled
-                          ? "text-gray-700 hover:bg-sky-50"
-                          : "text-sky-100 hover:bg-white/10"
-                      }`}
-                    >
-                      <span className="text-xl">{item.icon}</span>
-                      <span className="font-semibold">{item.label}</span>
-                      {isActive(item.path) && (
-                        <motion.div
-                          layoutId="mobileActiveIndicator"
-                          className="ml-auto w-2 h-2 bg-cyan-400 rounded-full"
-                        />
-                      )}
-                    </Link>
-                  </motion.div>
-                ))}
-                
-                {/* Emergency Call in Mobile */}
-                <motion.div
-                  initial={{ x: -50, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: navItems.length * 0.1 }}
-                  className="pt-4 mt-4 border-t border-sky-700/30"
-                >
-                  <a
-                    href="tel:+919876543210"
-                    className="flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-red-600 to-rose-500 text-white font-bold rounded-xl shadow-lg"
-                  >
-                    <span className="text-2xl">🚨</span>
-                    <div className="text-center">
-                      <div>Emergency Call</div>
-                      <div className="text-sm font-normal">+91-9876543210</div>
-                    </div>
-                  </a>
-                </motion.div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </motion.header>
 
-      {/* Spacer to prevent content from going under fixed header */}
-      <div className="h-20" />
+      {/* LOCAL STYLES ONLY */}
+      <style>
+        {`
+          .nav-active-underline {
+            position: relative;
+          }
+          .nav-active-underline::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            height: 2px;
+            width: 100%;
+            background-color: #dc2626;
+          }
+
+          /* ================= MOBILE BOTTOM NAV ================= */
+          @media (max-width: 1023px) {
+            header {
+              top: auto !important;
+              bottom: 0 !important;
+            }
+
+            header > div {
+              height: 72px !important;
+              padding: 0 14px !important;
+              border-radius: 20px 20px 0 0 !important;
+            }
+
+            header nav {
+              width: 100%;
+              display: flex !important;
+              justify-content: space-between;
+              gap: 0 !important;
+            }
+
+            header nav a {
+              flex: 1;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              font-size: 11px;
+              gap: 4px;
+              color: #374151;
+            }
+
+            .nav-active-underline::after {
+              display: none;
+            }
+
+            /* Hide CTA & center logo on mobile */
+            header > div > div:last-child,
+            header > div > div.absolute {
+              display: none !important;
+            }
+          }
+        `}
+      </style>
     </>
   );
 }

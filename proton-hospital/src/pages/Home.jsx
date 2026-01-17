@@ -5,17 +5,21 @@ import drrmehta from "../assets/Dr.R.Mehta.jpg";
 import trauma from "../assets/trauma.avif";
 import critical from "../assets/cardiac-critical-care.avif";
 import kumar from "../assets/Dr.A.Kumar.avif";
-import rjoshi from "../assets/rjoshi.avif";
+import HeadDoctors from   '../components/homepage/HeadDoctors';
 import kapoor from "../assets/kapoor.avif";
 import Capacity from '../components/homepage/Capacity';
 import { motion, AnimatePresence } from "framer-motion";
-import Herosection from '../components/homepage/Herosection';
-import Capabilities from '../components/homepage/Capabilities';
+import Herosection from '../components/homepage/HeroSection';
+
 import Detailedsections from '../components/homepage/Detailedsections';
 import Doctersection from '../components/homepage/Doctersection';
-import Patientstories from '../components/homepage/Patientstories';
-import Emergency from '../components/homepage/Emergency';
 
+import ClinicService from '../components/homepage/ClinicService';
+import Appointment from '../components/homepage/Appointment';
+import Emergency from '../components/homepage/Emergency';
+import TestimonialsCTA from "../components/homepage/TestimonialsCTA";
+import HealthGuidanceSection from "../components/homepage/HealthGuidanceSection";
+import MedicalServices from '../components/homepage/MedicalServices';
 const imageCards = [
   {
     title: 'Advanced Ventilation',
@@ -106,29 +110,39 @@ export default function HomePage() {
       <Herosection/>
 
       {/* ADVANCED CAPABILITIES - Simple 2 per row */}
-      <Capabilities/>
-
+      {/* <Capabilities/> */}
+      <HealthGuidanceSection/>
 
       {/* DETAILED SECTIONS */}
-    <Detailedsections/>
+    <MedicalServices/>
 
       {/* DOCTORS SECTION - Simple responsive with hover */}
-    <Doctersection/>
+      
+  <div>
+      <HeadDoctors />
+  </div>
 
 
+{/*clinic service*/}
+<ClinicService/>
+
+ {/* TESTIMONIAL + CTA SECTION */}
+   
+      <div>
+    <TestimonialsCTA/>
+</div>
 
 
+{/*clinic service*/}
 
-      {/* PATIENT STORIES */}
-      <Patientstories/>
 
-      {/* CAPACITY METRICS */}
-      <section className="px-4 py-12 bg-white">
-        <Capacity />
-      </section>
+{/*BookAppointment*/}
+<div>
+<Appointment />
+</div>
+      
 
-      {/* EMERGENCY CTA - Simple */}
-      <Emergency/>
+      
     </div>
   );
 }

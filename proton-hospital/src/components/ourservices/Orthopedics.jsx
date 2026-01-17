@@ -1,0 +1,24 @@
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+// import img from "../../assets/departments/ortho.jpg";
+
+export default function Orthopedics() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "center center"] });
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
+
+  return (
+    <>
+      <TopSection title="Orthopedics" tagline="Restoring movement and relieving pain." image={img} scale={scale} imageRef={ref} />
+      <Content
+        overview="Advanced care for bones, joints, and musculoskeletal disorders."
+        treat={[
+          "Fractures & trauma",
+          "Joint pain & arthritis",
+          "Sports injuries",
+          "Spine disorders",
+        ]}
+      />
+    </>
+  );
+}

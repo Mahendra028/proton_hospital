@@ -1,0 +1,400 @@
+[
+  {
+    "id": "cardiology",
+    "title": "Cardiology",
+    "intro": {
+      "breadcrumb": "All Services",
+      "title": "Cardiology",
+      "description": "Our Cardiology department offers comprehensive care for heart-related conditions using advanced diagnostic and interventional technologies.",
+      "image": "/departments/cardiology.jpg"
+    },
+    "sections": [
+      {
+        "heading": "Core Services",
+        "points": [
+          "ECG & 2D Echocardiography",
+          "Treadmill Stress Testing (TMT)",
+          "Heart Failure Management",
+          "Hypertension Clinic"
+        ]
+      },
+      {
+        "heading": "Advanced Care",
+        "points": [
+          "Cardiac Catheterization",
+          "Angiography & Angioplasty",
+          "Pacemaker Implantation",
+          "Preventive Cardiology"
+        ]
+      }
+    ],
+    "gallery": [
+      {
+        "image": "/departments/cardiology-1.jpg",
+        "title": "ECG & Monitoring",
+        "description": "Continuous heart rhythm monitoring."
+      },
+      {
+        "image": "/departments/cardiology-2.jpg",
+        "title": "Cath Lab",
+        "description": "Advanced cardiac catheterization lab."
+      }
+    ]
+  },
+
+  {
+    "id": "nephrology",
+    "title": "Nephrology",
+    "intro": {
+      "breadcrumb": "All Services",
+      "title": "Nephrology",
+      "description": "Dedicated care for kidney-related disorders including acute and chronic renal diseases.",
+      "image": "/departments/nephrology.jpg"
+    },
+    "sections": [
+      {
+        "heading": "Kidney Care",
+        "points": [
+          "Chronic Kidney Disease Management",
+          "Hemodialysis",
+          "Peritoneal Dialysis",
+          "Electrolyte Disorders"
+        ]
+      }
+    ],
+    "gallery": [
+      {
+        "image": "/departments/nephrology-1.jpg",
+        "title": "Dialysis Unit",
+        "description": "State-of-the-art dialysis facilities."
+      }
+    ]
+  },
+
+  {
+    "id": "gynec-obst",
+    "title": "Gynecology & Obstetrics",
+    "intro": {
+      "breadcrumb": "All Services",
+      "title": "Gynecology & Obstetrics",
+      "description": "Comprehensive women’s healthcare from adolescence to maternity and menopause.",
+      "image": "/departments/gynecology.jpg"
+    },
+    "sections": [
+      {
+        "heading": "Women’s Health",
+        "points": [
+          "Antenatal & Postnatal Care",
+          "Normal & Cesarean Deliveries",
+          "High-Risk Pregnancy Care",
+          "Infertility Evaluation"
+        ]
+      }
+    ],
+    "gallery": [
+      {
+        "image": "/departments/gynecology-1.jpg",
+        "title": "Maternity Ward",
+        "description": "Comfortable maternity facilities."
+      }
+    ]
+  },
+
+  {
+    "id": "orthopedics",
+    "title": "Orthopedics",
+    "intro": {
+      "breadcrumb": "All Services",
+      "title": "Orthopedics",
+      "description": "Expert care for bones, joints, spine, and musculoskeletal injuries.",
+      "image": "/departments/orthopedics.jpg"
+    },
+    "sections": [
+      {
+        "heading": "Orthopaedic Treatments",
+        "points": [
+          "Joint Replacement Surgery",
+          "Fracture & Trauma Care",
+          "Arthroscopy",
+          "Spine Disorders"
+        ]
+      }
+    ],
+    "gallery": [
+      {
+        "image": "/departments/orthopedics-1.jpg",
+        "title": "Joint Replacement",
+        "description": "Advanced joint replacement surgery."
+      }
+    ]
+  },
+
+  {
+    "id": "general-medicine",
+    "title": "General Medicine",
+    "intro": {
+      "breadcrumb": "All Services",
+      "title": "General Medicine",
+      "description": "Primary care and diagnosis for a wide range of adult medical conditions.",
+      "image": "/departments/general-medicine.jpg"
+    },
+    "sections": [
+      {
+        "heading": "Medical Care",
+        "points": [
+          "Fever & Infections",
+          "Diabetes Management",
+          "Hypertension",
+          "Lifestyle Diseases"
+        ]
+      }
+    ],
+    "gallery": [
+     
+    ]
+  },
+
+  {
+    "id": "oncology",
+    "title": "Oncology",
+    "intro": {
+      "breadcrumb": "All Services",
+      "title": "Oncology",
+      "description": "Comprehensive cancer diagnosis and treatment with a multidisciplinary approach.",
+      "image": "/departments/oncology.jpg"
+    },
+    "sections": [
+      {
+        "heading": "Cancer Care",
+        "points": [
+          "Medical Oncology",
+          "Chemotherapy Services",
+          "Cancer Screening",
+          "Palliative Care"
+        ]
+      }
+    ],
+    "gallery": []
+  },
+
+  {
+    "id": "onco-surgery",
+    "title": "Onco Surgery",
+    "intro": {
+      "breadcrumb": "All Services",
+      "title": "Onco Surgery",
+      "description": "Advanced surgical management of various cancers.",
+      "image": "/departments/onco-surgery.jpg"
+    },
+    "sections": [
+      {
+        "heading": "Surgical Oncology",
+        "points": [
+          "Tumor Resection",
+          "Minimally Invasive Cancer Surgery",
+          "Post-Surgical Rehabilitation"
+        ]
+      }
+    ],
+    "gallery": []
+  },
+
+  {
+    "id": "uro-surgery",
+    "title": "Uro Surgery",
+    "intro": {
+      "breadcrumb": "All Services",
+      "title": "Uro Surgery",
+      "description": "Specialized surgical treatment for urinary tract and male reproductive system.",
+      "image": "/departments/uro-surgery.jpg"
+    },
+    "sections": [
+      {
+        "heading": "Urology Services",
+        "points": [
+          "Kidney Stone Surgery",
+          "Prostate Surgery",
+          "Urinary Disorders"
+        ]
+      }
+    ],
+    "gallery": []
+  },
+
+  {
+    "id": "icu",
+    "title": "ICU (Critical Care)",
+    "intro": {
+      "breadcrumb": "All Services",
+      "title": "ICU (Critical Care)",
+      "description": "24/7 intensive care for critically ill patients with advanced life support.",
+      "image": "/departments/icu.jpg"
+    },
+    "sections": [
+      {
+        "heading": "Critical Care Facilities",
+        "points": [
+          "Ventilator Support",
+          "Cardiac Monitoring",
+          "Emergency Response Team"
+        ]
+      }
+    ],
+    "gallery": []
+  },
+
+  {
+    "id": "neurosurgery",
+    "title": "Neurosurgery",
+    "intro": {
+      "breadcrumb": "All Services",
+      "title": "Neurosurgery",
+      "description": "Advanced surgical care for brain and spinal disorders.",
+      "image": "/departments/neurosurgery.jpg"
+    },
+    "sections": [
+      {
+        "heading": "Neuro Care",
+        "points": [
+          "Brain Tumor Surgery",
+          "Spine Surgery",
+          "Neuro Trauma"
+        ]
+      }
+    ],
+    "gallery": []
+  },
+
+  {
+    "id": "pediatrics",
+    "title": "Pediatrics",
+    "intro": {
+      "breadcrumb": "All Services",
+      "title": "Pediatrics",
+      "description": "Comprehensive healthcare services for infants, children, and adolescents.",
+      "image": "/departments/pediatrics.jpg"
+    },
+    "sections": [
+      {
+        "heading": "Child Care",
+        "points": [
+          "Newborn Care",
+          "Vaccination Programs",
+          "Growth Monitoring"
+        ]
+      }
+    ],
+    "gallery": []
+  },
+
+  {
+    "id": "general-surgery",
+    "title": "General Surgery",
+    "intro": {
+      "breadcrumb": "All Services",
+      "title": "General Surgery",
+      "description": "Wide range of surgical procedures with modern operation theatres.",
+      "image": "/departments/general-surgery.jpg"
+    },
+    "sections": [
+      {
+        "heading": "Surgical Services",
+        "points": [
+          "Laparoscopic Surgery",
+          "Hernia Repair",
+          "Appendectomy"
+        ]
+      }
+    ],
+    "gallery": []
+  },
+
+  {
+    "id": "maxillofacial",
+    "title": "Maxillofacial",
+    "intro": {
+      "breadcrumb": "All Services",
+      "title": "Maxillofacial",
+      "description": "Specialized care for facial injuries and oral surgical procedures.",
+      "image": "/departments/maxillofacial.jpg"
+    },
+    "sections": [
+      {
+        "heading": "Facial Surgery",
+        "points": [
+          "Jaw Surgery",
+          "Facial Trauma",
+          "Dental Implants"
+        ]
+      }
+    ],
+    "gallery": []
+  },
+
+  {
+    "id": "pathology",
+    "title": "Pathology",
+    "intro": {
+      "breadcrumb": "All Services",
+      "title": "Pathology",
+      "description": "Accurate diagnostic laboratory services supporting clinical decisions.",
+      "image": "/departments/pathology.jpg"
+    },
+    "sections": [
+      {
+        "heading": "Diagnostic Services",
+        "points": [
+          "Blood Tests",
+          "Biopsy & Histopathology",
+          "Microbiology"
+        ]
+      }
+    ],
+    "gallery": []
+  },
+
+  {
+    "id": "radiology",
+    "title": "Radiology",
+    "intro": {
+      "breadcrumb": "All Services",
+      "title": "Radiology",
+      "description": "Advanced imaging services for accurate diagnosis.",
+      "image": "/departments/radiology.jpg"
+    },
+    "sections": [
+      {
+        "heading": "Imaging Services",
+        "points": [
+          "X-Ray",
+          "CT Scan",
+          "MRI",
+          "Ultrasound"
+        ]
+      }
+    ],
+    "gallery": []
+  },
+
+  {
+    "id": "physiotherapy",
+    "title": "Physiotherapy",
+    "intro": {
+      "breadcrumb": "All Services",
+      "title": "Physiotherapy",
+      "description": "Rehabilitation and physical therapy for faster recovery.",
+      "image": "/departments/physiotherapy.jpg"
+    },
+    "sections": [
+      {
+        "heading": "Rehabilitation",
+        "points": [
+          "Post-Surgical Rehab",
+          "Sports Injury Rehab",
+          "Pain Management Therapy"
+        ]
+      }
+    ],
+    "gallery": []
+  }
+]

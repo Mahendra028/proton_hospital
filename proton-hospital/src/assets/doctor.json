@@ -1,0 +1,170 @@
+[
+  {
+    "id": 1,
+    "name": "Dr. Pradeep Moonot",
+    "department": "Orthopedics & Sports Medicine",
+    "designation": "Senior Consultant Orthopaedic Surgeon",
+    "qualification": "MBBS (Bom), MS (Orth)(Bom), DNB (Orth), MRCS (UK), FRCS (Orth)(UK)",
+    "experience": "20+ Years of Experience",
+    "isHead": true,
+    "image": "/doctors/pradeep-moonot.jpg",
+
+    "shortDescription": "Specialist in knee, foot and ankle and sports medicine with extensive experience in the UK and India.",
+
+    "about": "Dr. Pradeep Moonot is a highly respected orthopaedic surgeon and a super specialist in knee, foot, ankle and sports medicine. With over two decades of experience in the UK and India, his practice is dedicated exclusively to advanced joint care, sports injuries and complex orthopaedic conditions.",
+
+    "internationalExperience": "Dr. Moonot has worked at world-renowned institutions including University College London Hospital (UCLH) and Hospital for Special Surgery (HSS), New York. He has trained with global leaders such as Michael Freeman (UK), Lew Schon (USA), Eric Bluman (Boston), Andreas Weiler (Germany) and Andy Williams (London).",
+
+    "indiaPractice": "He is associated with leading hospitals in Mumbai including Breach Candy Hospital, Sir H.N. Reliance Foundation Hospital, Hinduja Hospital (Khar) and Nanavati Hospital. He also visits Hyderabad, Vijayawada, Surat and Pune to provide advanced orthopaedic care.",
+
+    "socialWork": "Dr. Moonot regularly conducts free orthopaedic camps across India to offer super-specialist care to under-served communities.",
+
+    "achievements": [
+      "Executive Member – American Orthopaedic Foot & Ankle Society (AOFAS)",
+      "AOFAS Travelling Fellowship Award – 2018",
+      "200+ national and international publications",
+      "Reviewer & co-editor for international orthopaedic journals"
+    ],
+
+    "specialInterests": [
+      "Knee replacement and revision surgery",
+      "Sports medicine and ligament reconstruction",
+      "Foot and ankle surgery",
+      "Arthroscopic procedures",
+      "Complex knee trauma"
+    ],
+
+    "professionalExperience": "Over 15 years of combined clinical and research experience in orthopaedics across the UK and India."
+  },
+
+  {
+    "id": 2,
+    "name": "Dr. Robert Fox",
+    "department": "Cardiology",
+    "designation": "Senior Consultant Cardiologist",
+    "qualification": "MBBS, DM (Cardiology)",
+    "experience": "20+ Years of Experience",
+    "isHead": true,
+    "image": "/doctors/robert-fox.jpg",
+
+    "shortDescription": "Expert in interventional cardiology and advanced heart disease management.",
+
+    "about": "Dr. Robert Fox is a senior cardiologist with over 20 years of experience in diagnosing and managing complex cardiac conditions. He is known for his patient-centric approach and precision in interventional cardiology.",
+
+    "internationalExperience": "He has trained in advanced cardiac interventions in the UK and USA, working with globally recognized cardiac centers.",
+
+    "indiaPractice": "Dr. Fox has led cardiology departments at multiple tertiary care hospitals and is actively involved in cardiac emergency services.",
+
+    "achievements": [
+      "Pioneer in advanced angioplasty techniques",
+      "Published multiple research papers in cardiology journals",
+      "Speaker at international cardiology conferences"
+    ],
+
+    "specialInterests": [
+      "Coronary angioplasty",
+      "Heart failure management",
+      "Preventive cardiology",
+      "Cardiac emergencies"
+    ],
+
+    "professionalExperience": "Two decades of hands-on experience in invasive and non-invasive cardiology."
+  },
+
+  {
+    "id": 3,
+    "name": "Dr. Sophia Turner",
+    "department": "Oncology",
+    "designation": "Consultant Medical Oncologist",
+    "qualification": "MBBS, MD (Oncology)",
+    "experience": "20+ Years of Experience",
+    "isHead": true,
+    "image": "/doctors/sophia-turner.jpg",
+
+    "shortDescription": "Specialist in early cancer diagnosis and personalized chemotherapy planning.",
+
+    "about": "Dr. Sophia Turner is a renowned oncologist with a strong focus on early cancer detection, evidence-based chemotherapy and long-term cancer survivorship care.",
+
+    "internationalExperience": "She has worked with global cancer institutes and participated in international oncology research programs.",
+
+    "indiaPractice": "Dr. Turner has successfully treated thousands of cancer patients and actively contributes to multidisciplinary tumor boards.",
+
+    "achievements": [
+      "Contributor to international oncology trials",
+      "Author of peer-reviewed oncology research",
+      "Advocate of patient-centered cancer care"
+    ],
+
+    "specialInterests": [
+      "Chemotherapy planning",
+      "Breast and gastrointestinal cancers",
+      "Cancer prevention and screening"
+    ],
+
+    "professionalExperience": "Extensive clinical experience in comprehensive cancer management."
+  },
+
+  {
+    "id": 4,
+    "name": "Dr. Michael Brown",
+    "department": "Orthopedics",
+    "designation": "Consultant Orthopaedic Surgeon",
+    "qualification": "MBBS, MS (Orthopedics)",
+    "experience": "20+ Years of Experience",
+    "isHead": true,
+    "image": "/doctors/michael-brown.jpg",
+
+    "shortDescription": "Specialist in joint replacement and complex trauma surgeries.",
+
+    "about": "Dr. Michael Brown is an experienced orthopaedic surgeon known for precision joint replacement surgeries and trauma care.",
+
+    "internationalExperience": "He has completed advanced fellowships in joint replacement surgery abroad.",
+
+    "indiaPractice": "Associated with multiple high-volume orthopaedic centers delivering advanced surgical outcomes.",
+
+    "achievements": [
+      "Performed 5,000+ joint replacement surgeries",
+      "Faculty at national orthopaedic workshops"
+    ],
+
+    "specialInterests": [
+      "Knee and hip replacement",
+      "Trauma surgery",
+      "Minimally invasive orthopaedics"
+    ],
+
+    "professionalExperience": "Over two decades of orthopaedic surgical expertise."
+  },
+
+  {
+    "id": 5,
+    "name": "Dr. Emily Carter",
+    "department": "Neurology",
+    "designation": "Senior Consultant Neurologist",
+    "qualification": "MBBS, DM (Neurology)",
+    "experience": "19+ Years of Experience",
+    "isHead": true,
+    "image": "/doctors/emily-carter.jpg",
+
+    "shortDescription": "Expert neurologist specializing in stroke and neurodegenerative disorders.",
+
+    "about": "Dr. Emily Carter is a leading neurologist with extensive experience in managing stroke, epilepsy and complex neurological disorders.",
+
+    "internationalExperience": "She has undergone advanced neurological training in Europe and the USA.",
+
+    "indiaPractice": "Dr. Carter actively manages acute stroke units and long-term neurological rehabilitation programs.",
+
+    "achievements": [
+      "Key contributor to stroke care protocols",
+      "Published neurological research papers"
+    ],
+
+    "specialInterests": [
+      "Stroke management",
+      "Epilepsy care",
+      "Neurodegenerative diseases"
+    ],
+
+    "professionalExperience": "Nearly two decades of excellence in neurology practice."
+  }
+]

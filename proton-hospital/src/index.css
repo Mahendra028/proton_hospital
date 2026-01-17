@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+
+
+
 @keyframes bounce-slow {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-18px); }
@@ -7,4 +17,59 @@
 
 .animate-bounce-slow {
   animation: bounce-slow 3s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.animate-slide-right {
+  animation: slideRight 0.6s ease-out;
+}
+
+/* SHARP DIAGONAL Z-CUT PARTITION (NO CURVE, NO WAVE) */
+.partition-shape {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    85% 35%,
+    100% 70%,
+    85% 100%,
+    0 100%
+  );
+}
+
+/* SOFT MEDICAL GRADIENT */
+.partition-gradient {
+  background: linear-gradient(
+    to bottom,
+    rgba(96, 165, 250, 0.65),
+    rgba(147, 197, 253, 0.45),
+    rgba(96, 165, 250, 0.65)
+  );
+}
+
+/* SUBTLE PREMIUM ANIMATION */
+@keyframes slidePulse {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.partition-animate {
+  animation: slidePulse 8s ease-in-out infinite;
 }
