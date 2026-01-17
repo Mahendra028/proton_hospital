@@ -4,11 +4,6 @@ body {
   background-color: #ffffff;
 }
 
-
-
-
-
-
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -51,3 +46,4 @@ body {
 .read-the-docs {
   color: #888;
 }
+
