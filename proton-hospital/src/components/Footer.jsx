@@ -432,7 +432,7 @@ export default function Footer() {
     </p>
   </div>
   <Link
-  to="/book-appointment"
+  to="/bookappointment"
   className="inline-block px-6 py-3 mt-6 text-sm font-semibold text-blue-700 transition border border-blue-700 rounded-full hover:bg-blue-700 hover:text-white"
 >
   Book Appointment
