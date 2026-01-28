@@ -20,7 +20,7 @@ export default function OurStory() {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
 
           {/* CARD 1 */}
-          <div className="flex flex-col items-center justify-center p-8 bg-white border border-gray-200">
+          <div className="flex flex-col items-center justify-center p-8 bg-white border border-gray-200 hover:shadow-2xl">
             <svg className="w-10 h-10 mb-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
             </svg>
@@ -30,7 +30,7 @@ export default function OurStory() {
           </div>
 
           {/* CARD 2 */}
-          <div className="flex flex-col items-center justify-center p-8 bg-white border border-gray-200">
+          <div className="flex flex-col items-center justify-center p-8 bg-white border border-gray-200 hover:shadow-2xl">
             <svg className="w-10 h-10 mb-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M16 21s-4-2.5-4-5a4 4 0 118 0c0 2.5-4 5-4 5z" />
               <circle cx="12" cy="7" r="4" />
@@ -41,7 +41,7 @@ export default function OurStory() {
           </div>
 
           {/* CARD 3 */}
-          <div className="flex flex-col items-center justify-center p-8 bg-white border border-gray-200">
+          <div className="flex flex-col items-center justify-center p-8 bg-white border border-gray-200 hover:shadow-2xl">
             <svg className="w-10 h-10 mb-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="10" />
               <path strokeLinecap="round" strokeLinejoin="round" d="M2 12h20" />
@@ -52,7 +52,7 @@ export default function OurStory() {
           </div>
 
           {/* CARD 4 */}
-          <div className="flex flex-col items-center justify-center p-8 bg-white border border-gray-200">
+          <div className="flex flex-col items-center justify-center p-8 bg-white border border-gray-200 hover:shadow-2xl">
             <svg className="w-10 h-10 mb-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l9-9 9 9v9H3z" />
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v-3" />
@@ -63,7 +63,7 @@ export default function OurStory() {
           </div>
 
           {/* CARD 5 */}
-          <div className="flex flex-col items-center justify-center p-8 bg-white border border-gray-200">
+          <div className="flex flex-col items-center justify-center p-8 bg-white border border-gray-200 hover:shadow-2xl">
             <svg className="w-10 h-10 mb-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
               <circle cx="8" cy="7" r="4" />
               <circle cx="16" cy="7" r="4" />

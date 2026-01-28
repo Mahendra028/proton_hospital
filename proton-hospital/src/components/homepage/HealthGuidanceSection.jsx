@@ -378,8 +378,7 @@ export default function HealthGuidanceSection() {
                 : "opacity-0 translate-x-12"
             }`}
           >
-            <button className="group relative flex items-center w-[220px] h-12 bg-[#cfe9ef] overflow-hidden">
-
+<button className="group relative flex items-center w-[220px] h-12 bg-[#6897e1] overflow-hidden rounded-full">
               {/* Arrow */}
               <span
                 className="

@@ -15,7 +15,7 @@ import OurServices from "./pages/OurServices";
 import Doctors from "./pages/Doctors";
 import Contact from "./pages/Contact";
 import Intro from "./components/Intro";
-import AppointmentForm from "./components/contact/AppointmentForm";
+import AppointmentForm from "./components/Contact/AppointmentForm";
 import BookAppointment from "./pages/BookAppointment";
 import HeadDoctors from "./components/homepage/HeadDoctors";
 
